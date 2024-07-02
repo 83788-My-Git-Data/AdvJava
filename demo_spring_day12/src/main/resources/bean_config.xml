@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="eng" class="dependency.EnglishTeacher"/>
+	<bean id="maths" class="dependency.MathsTeacher" lazy-init="true"/>
+	<bean id="sc" class="dependency.ScienceTeacher" />
+	<bean id="cricket" class="dependency.CricketCoach"/>
+	<bean id="football" class="dependency.FootballCoach" scope="prototype"/>
+	<bean id="swimming" class="dependency.SwimmingCoach" lazy-init="true"/>
+	
+	<bean id="pub_school" class="dependent.PublicSchool"
+	init-method="anyInit" destroy-method="anyDestroy" factory-method="myFactoryMethod"> 
+	<constructor-arg name="myTeacher" ref="sc"/>
+	<constructor-arg name="fees" value="12345678"/>
+	<constructor-arg name="sportsCoach" ref="cricket"/>
+	</bean>
+
+</beans>
